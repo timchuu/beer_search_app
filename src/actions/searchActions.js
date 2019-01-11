@@ -8,6 +8,7 @@ export function getBeer(){
     const request = axios.get('https://jsonplaceholder.typicode.com/posts')
                                     .then(response => response.data)
                                     
+                                    
         
             return {
                 type: BEER_SEARCH,

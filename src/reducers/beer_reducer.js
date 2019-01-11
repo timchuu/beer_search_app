@@ -2,11 +2,10 @@ import {
     BEER_SEARCH
 } from '../actions/types';
 
-    const initialState ={
-        results: []
-    }
 
-export default function(state = initialState, action){
+
+
+export default function(state ={}, action){
         switch(action.type) {
             case BEER_SEARCH:
                     return {...state, beers: action.payload}

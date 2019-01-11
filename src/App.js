@@ -8,6 +8,7 @@ const App = () => {
 
       <Switch>
           <Route path="/" exact component={Home}/>
+          <Route path="/search/:searchTerm" component={Home}/>
      </Switch>
     );
   

@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import {Form, Button} from 'semantic-ui-react'
+import {Form, Input} from 'semantic-ui-react'
 
 class Search extends Component {
+    //submit form/ prevent form from submiting
+    //get values of form
+    //redirect to correct URL
     render() {
         return (
             <Form onSubmit={this.props.onsubmit}>
                 <Form.Field>
                     <label>User Input</label>
-                        <input />
+                    <Input  action={{ type: 'submit', content: 'Go' }} placeholder='Navigate to...' />
                 </Form.Field>
-                <Button>SUBMIT</Button>
             </Form>
         );
     }

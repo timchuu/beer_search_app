@@ -12,3 +12,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+.ui.form{
+  margin-top: 100px;
+}
+
+.ui.button {
+  background-color: #fbbd08;
+  color:white;
+}
