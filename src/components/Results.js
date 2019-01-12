@@ -7,11 +7,13 @@ const src = 'https://via.placeholder.com/150';
 class Results extends Component {
     
     render() {
-        console.log(this.props)
+        
+        
+       
         return (
             <div style={{marginTop: '75px'}}>
     <Header as='h5' attached='top'>
-     BUD LITE
+    Beer name
     </Header>
     <Segment attached>
     <Image src={src} size='tiny' verticalAlign='middle' /> This Beer is light and crips.

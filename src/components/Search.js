@@ -10,7 +10,7 @@ class Search extends Component {
             <Form onSubmit={this.props.onsubmit}>
                 <Form.Field>
                     <label>User Input</label>
-                    <Input  action={{ type: 'submit', content: 'Go' }} placeholder='Navigate to...' />
+                    <Input  name={this.props.name} onChange={this.props.onchange} value={this.props.value} action={{ type: 'submit', content: 'Go' }} placeholder='Navigate to...' />
                 </Form.Field>
             </Form>
         );
