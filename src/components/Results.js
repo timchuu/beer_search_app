@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Image, Segment } from 'semantic-ui-react'
+import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
 const src = 'https://via.placeholder.com/150';
 
 //ADD SHADOW TO BOTTOM OF 
@@ -11,15 +11,60 @@ class Results extends Component {
         
        
         return (
-            <div style={{marginTop: '75px'}}>
-    <Header as='h5' attached='top'>
-    Beer name
-    </Header>
-    <Segment attached>
-    <Image src={src} size='tiny' verticalAlign='middle' /> This Beer is light and crips.
-    </Segment>
-    
-            </div>
+            <Item.Group divided>
+    <Item>
+      <Item.Image src={src} />
+
+      <Item.Content>
+        <Item.Header as='a'>12 Years a Slave</Item.Header>
+        <Item.Meta>
+          <span className='cinema'>Union Square 14</span>
+        </Item.Meta>
+        <Item.Description>paragraph</Item.Description>
+        <Item.Extra>
+          <Label>IMAX</Label>
+          <Label icon='globe' content='Additional Languages' />
+        </Item.Extra>
+      </Item.Content>
+    </Item>
+
+    <Item>
+      <Item.Image src={src} />
+
+      <Item.Content>
+        <Item.Header as='a'>My Neighbor Totoro</Item.Header>
+        <Item.Meta>
+          <span className='cinema'>IFC Cinema</span>
+        </Item.Meta>
+        <Item.Description>paragraph</Item.Description>
+        <Item.Extra>
+          <Button primary floated='right'>
+            Buy tickets
+            <Icon name='right chevron' />
+          </Button>
+          <Label>Limited</Label>
+        </Item.Extra>
+      </Item.Content>
+    </Item>
+
+    <Item>
+      <Item.Image src={src} />
+
+      <Item.Content>
+        <Item.Header as='a'>Watchmen</Item.Header>
+        <Item.Meta>
+          <span className='cinema'>IFC</span>
+        </Item.Meta>
+        <Item.Description>paragraph</Item.Description>
+        <Item.Extra>
+          <Button primary floated='right'>
+            Buy tickets
+            <Icon name='right chevron' />
+          </Button>
+        </Item.Extra>
+      </Item.Content>
+    </Item>
+  </Item.Group>
         );
     }
 }

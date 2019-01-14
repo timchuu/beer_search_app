@@ -40,6 +40,7 @@ class HomeContainer extends Component {
     render() {
         const {ranBeers, beers, ranBrewery} = this.props
         const name = 'searchTerm'
+        console.log(this.props)
         return (
             <Layout>
               <Search

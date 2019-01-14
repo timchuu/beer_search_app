@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Header, Container } from 'semantic-ui-react';
+import { Header, Container, Segment } from 'semantic-ui-react';
 import { Card, Image } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import InlineLoader from '../utils/InlineLoader';
 import Slider from 'react-slick';
 import SlickArrow from '../utils/SlickArrow';
 
 
 class BreweryRandom extends Component {
     render() {
-        console.log(this.props)
         const settings = {
             infinite: true,
             slidesToShow: 3,
@@ -56,21 +57,21 @@ class BreweryRandom extends Component {
                     ranBrew.data ?
                    
                         ranBrew.data.map((item, i) =>(
-                           
-                            <Card key={item.id} centered href='#' raised>
+                            <Link to='#' key={item.id}>
+                            <Card  color='yellow' centered  raised>
                                 <Image centered src={item.images.medium} />
                                     <Card.Content>
-                                    <Card.Header>{item.name}</Card.Header>
+                                    <Card.Header>{!item.name || !item.name.length  > 20 ?  `${item.name}`: `${item.name.substring(0, 25)}...`}</Card.Header>
                                     <Card.Meta>
                                         <span className='date'>Joined in 2015</span>
                                     </Card.Meta>
-                                    <Card.Description>{item.description}</Card.Description>
+                                    <Card.Description>{!item.description || !item.description.length  > 50 ?  `${item.description}`: `${item.description.substring(0, 100)}...`}</Card.Description>
                                     </Card.Content>
                                 </Card>
-                               
+                                </Link>
 
 
-                        )):null
+                        )):<Segment><InlineLoader>Preparing Files</InlineLoader></Segment>
                         
 
                 }

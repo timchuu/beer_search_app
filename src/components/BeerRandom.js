@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Header, Container } from 'semantic-ui-react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Segment} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+import InlineLoader from '../utils/InlineLoader';
 import SlickArrow from '../utils/SlickArrow';
 
 
@@ -12,6 +14,7 @@ class BeerRandom extends Component {
 //LINK TO API AND PUSH TO SINGLE URL
     
     render() {
+        console.log(this.props)
         const settings = {
             infinite: true,
             slidesToShow: 3,
@@ -55,29 +58,31 @@ class BeerRandom extends Component {
                     
                    
                     <Slider {...settings}>
+                    
                 {
                     
                     ranBeer.data ?
                    
                         ranBeer.data.map((item, i) =>(
-                           
-                            <Card key={item.id} centered href='#' raised>
-                                <Image centered src={item.labels.medium} />
+                            <Link to={`/beer/${item.id}`} key={item.id}>
+                            <Card  color='yellow' centered raised>
+                                <Image centered src={item.labels.icon} />
                                     <Card.Content>
-                                    <Card.Header>{item.name}</Card.Header>
+                                    <Card.Header>{!item.name || !item.name.length  > 20 ?  `${item.name}`: `${item.name.substring(0, 25)}...`}</Card.Header>
                                     <Card.Meta>
                                         <span className='date'>Joined in 2015</span>
                                     </Card.Meta>
-                                    <Card.Description>{item.description}</Card.Description>
+                                    <Card.Description>{!item.description || !item.description.length  > 50 ?  `${item.description}`: `${item.description.substring(0, 100)}...`}</Card.Description>
                                     </Card.Content>
                                 </Card>
-                               
+                                </Link>
 
 
-                        )):null
+                        )):<Segment textAlign='center'><InlineLoader>Preparing Files</InlineLoader></Segment>
                         
 
                 }
+                
                 </Slider>
                 
                 
