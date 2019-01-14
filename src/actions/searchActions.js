@@ -1,8 +1,12 @@
 import axios from 'axios';
 import {
     BEER_SEARCH,
-    RANDOM_BEER,
-    RANDOM_BREWERY
+    GET_RANDOM_BEER_SUCCESS,
+    GET_RANDOM_BEER_PENDING,
+    GET_RANDOM_BEER_ERROR,
+    GET_RANDOM_BREWERY_SUCCESS,
+    GET_RANDOM_BREWERY_PENDING,
+    GET_RANDOM_BREWERY_ERROR
 } from './types';
 
 
@@ -20,33 +24,38 @@ export function getBeer(){
 
 }
 
+
+
 export function getRandomBeer(){
 
-    const request = axios.get(`https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beer/random?key=7cd58050cdbe2bea891521aaec888692&hasLabels`)   
-                                    .then(response => response.data)
-
-                                    
-
-
-          return {
-              type: RANDOM_BEER,
-              payload: request
-          }                         
+        return dispatch => {
+            dispatch({ type: GET_RANDOM_BEER_PENDING});
+                axios.get(`https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?order=random&randomCount=10&hasLabels=Y&key=7cd58050cdbe2bea891521aaec888692`)
+                                                                .then(response => dispatch({type: GET_RANDOM_BEER_SUCCESS, payload: response.data}))
+                                                                        .catch(error => dispatch({type: GET_RANDOM_BEER_ERROR, payload: error}))
+        }
+                                                                      
+                                 
 }
 
 
 export function getRandomBrewery(){
 
-    const request = axios.get(`https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/brewery/random?key=7cd58050cdbe2bea891521aaec888692`)   
-                                    .then(response => response.data)
+        return dispatch =>{
+            dispatch({type: GET_RANDOM_BREWERY_PENDING });
+                axios.get(`https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/breweries?order=random&randomCount=10&hasImages=Y&key=7cd58050cdbe2bea891521aaec888692`) 
+                                                                .then(response => dispatch({type: GET_RANDOM_BREWERY_SUCCESS, payload: response.data}))
+                                                                        .catch(error => dispatch({type: GET_RANDOM_BREWERY_ERROR, payload: error}))
+
+
+        }
+      
+                                    
 
                                     
 
 
-          return {
-              type: RANDOM_BREWERY,
-              payload: request
-          }                       
+                         
     
 
 }

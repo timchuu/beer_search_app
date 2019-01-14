@@ -30,7 +30,7 @@ class HomeContainer extends Component {
          this.setState({
             [event.target.name]: event.target.value
          })
-         console.log(this.state)
+         
     }
 
 
@@ -38,7 +38,7 @@ class HomeContainer extends Component {
 
 
     render() {
-        const {beers} = this.props
+        const {ranBeers, beers, ranBrewery} = this.props
         const name = 'searchTerm'
         return (
             <Layout>
@@ -46,8 +46,8 @@ class HomeContainer extends Component {
                    name={name} value={this.state.searchTerm} onchange={(event) =>this.changeHandler(event)} onsubmit={(event)=> this.submitHandler(event)}
               />
               <Results results={beers}/>
-              <BeerRandom ranBeer={beers.ranBeer} />
-              <BreweryRandom/>
+              <BeerRandom ranBeer={ranBeers.ranBeer} />
+              <BreweryRandom ranBrew={ranBrewery.ranBrewery}/>
             </Layout>
         );
     }
@@ -56,7 +56,8 @@ class HomeContainer extends Component {
     const mapStateToProps = (state) => {
         return {
             beers: state.beer,
-            
+            ranBeers: state.randomBeer,
+            ranBrewery: state.randomBrewery
         }
        
     }
