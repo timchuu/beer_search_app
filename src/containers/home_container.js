@@ -5,8 +5,10 @@ import Layout from '../hoc/Layout';
 import Results from '../components/Results';
 import BeerRandom from '../components/BeerRandom';
 import BreweryRandom from '../components/BreweryRandom';
+import { Container } from 'semantic-ui-react';
 import { getBeer, getRandomBeer, getRandomBrewery } from '../actions/searchActions';
 import { bindActionCreators} from 'redux';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 class HomeContainer extends Component {
 
@@ -14,8 +16,7 @@ class HomeContainer extends Component {
        searchTerm: ''
    }
     
-    componentWillMount(){
-        this.props.getBeer()
+    componentDidMount(){
         this.props.getRandomBeer()
         this.props.getRandomBrewery()
         
@@ -42,14 +43,19 @@ class HomeContainer extends Component {
         const name = 'searchTerm'
         console.log(this.props)
         return (
+            <React.Fragment>
+            {!this.props.ranBeers.isPending && !this.props.ranBrewery.isPending  ?
             <Layout>
+            <Container>
               <Search
                    name={name} value={this.state.searchTerm} onchange={(event) =>this.changeHandler(event)} onsubmit={(event)=> this.submitHandler(event)}
               />
               <Results results={beers}/>
-              <BeerRandom ranBeer={ranBeers.ranBeer} />
-              <BreweryRandom ranBrew={ranBrewery.ranBrewery}/>
-            </Layout>
+              <BeerRandom ranBeer={ranBeers.ranBeer} isLoading={ranBeers.isPending} />
+              <BreweryRandom ranBrew={ranBrewery.ranBrewery} isLoading={ranBrewery.isPending}/> 
+              </Container>
+            </Layout> : <Dimmer active><Loader indeterminate inline="centered" size='massive'/></Dimmer>}
+            </React.Fragment>
         );
     }
 }
@@ -58,7 +64,7 @@ class HomeContainer extends Component {
         return {
             beers: state.beer,
             ranBeers: state.randomBeer,
-            ranBrewery: state.randomBrewery
+            ranBrewery: state.randomBrewery,
         }
        
     }

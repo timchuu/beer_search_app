@@ -14,7 +14,7 @@ class BeerRandom extends Component {
 //LINK TO API AND PUSH TO SINGLE URL
     
     render() {
-        console.log(this.props)
+        
         const settings = {
             infinite: true,
             slidesToShow: 3,
@@ -42,7 +42,7 @@ class BeerRandom extends Component {
             ]
 
         }
-        const { ranBeer } = this.props
+        const { ranBeer, isLoading } = this.props
         
         return (
             
@@ -78,14 +78,16 @@ class BeerRandom extends Component {
                                 </Link>
 
 
-                        )):<Segment textAlign='center'><InlineLoader>Preparing Files</InlineLoader></Segment>
+                        )):null
                         
 
                 }
+
+                
                 
                 </Slider>
                 
-                
+                {isLoading ? <Segment textAlign='center'><InlineLoader>Preparing Files</InlineLoader></Segment> : null}
                 
                
                 </Container>

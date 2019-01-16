@@ -36,8 +36,8 @@ class BreweryRandom extends Component {
             ]
 
         }
-        const { ranBrew } = this.props
-        
+        const { ranBrew, isLoading } = this.props
+        console.log(this.props)
         return (
             
                <React.Fragment>
@@ -57,7 +57,7 @@ class BreweryRandom extends Component {
                     ranBrew.data ?
                    
                         ranBrew.data.map((item, i) =>(
-                            <Link to='#' key={item.id}>
+                            <Link to={`/brewery/${item.id}`} key={item.id}>
                             <Card  color='yellow' centered  raised>
                                 <Image centered src={item.images.medium} />
                                     <Card.Content>
@@ -71,14 +71,14 @@ class BreweryRandom extends Component {
                                 </Link>
 
 
-                        )):<Segment><InlineLoader>Preparing Files</InlineLoader></Segment>
+                        )):null
                         
 
                 }
                 </Slider>
                 
                 
-                
+                {isLoading ? <Segment textAlign='center'><InlineLoader>Preparing Files</InlineLoader></Segment> : null}
                
                 </Container>
                 </React.Fragment>

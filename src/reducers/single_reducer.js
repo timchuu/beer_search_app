@@ -7,7 +7,7 @@ import {
 
 
 const intialState ={
-    results: [],
+    singleBeer: [],
     isPending: false
 }
 
@@ -17,7 +17,7 @@ export default function(state = intialState, action){
 
             switch(action.type){
                case GET_SINGLE_BEER_SUCCESS : 
-                        return {...state, isPending:false, results: action.payload}
+                        return {...state, isPending:false, singleBeer: action.payload}
                case GET_SINGLE_BEER_PENDING : 
                         return {...state, isPending:true} 
                case GET_SINGLE_BEER_ERROR : 

@@ -5,11 +5,12 @@ import { getSingleBeer } from '../actions/singleActions';
 
 class Single extends Component {
 
-    componentWillMount(){
+    componentDidMount(){
         this.props.loadBeerDetails(this.props.beerId);
+        console.log(this.props)
     }
     render() {
-        console.log(this.props)
+       
         
         return (
             <div>
@@ -23,7 +24,7 @@ class Single extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        result: state.singleReducer,
+        results: state.singleReducer,
         beerId: ownProps.match.params.id 
     }
 }

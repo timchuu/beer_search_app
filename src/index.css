@@ -23,3 +23,8 @@ code {
   color:white;
 }
 
+.bg-brew {
+  background: url('./assests/brewery.jpg');
+  background-size: cover
+}
+
