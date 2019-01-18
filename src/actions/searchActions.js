@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {
-    BEER_SEARCH,
+    BEER_SEARCH_PENDING,
+    BEER_SEARCH_SUCCESS,
+    BEER_SEARCH_ERROR,
     GET_RANDOM_BEER_SUCCESS,
     GET_RANDOM_BEER_PENDING,
     GET_RANDOM_BEER_ERROR,
@@ -10,17 +12,18 @@ import {
 } from './types';
 
 
-export function getBeer(){
+export function getBeer(searchTerm){
 
-    const request = axios.get('https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/beers?key=7cd58050cdbe2bea891521aaec888692')
-                                    .then(response => response.data)
+    return dispatch => {
+        dispatch({type: BEER_SEARCH_PENDING});
+                axios.get(`https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/search?q=${searchTerm}&key=7cd58050cdbe2bea891521aaec888692`)
+                                        .then(response => dispatch({type: BEER_SEARCH_SUCCESS, payload: response.data}))
+                                                    .catch(error => dispatch({type: BEER_SEARCH_ERROR, payload: error }))
+
+    }                       
+
+                                   
                                     
-                                    
-        
-            return {
-                type: BEER_SEARCH,
-                payload: request
-            }
 
 }
 

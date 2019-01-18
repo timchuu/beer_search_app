@@ -9,7 +9,7 @@ import { Container } from 'semantic-ui-react';
 import { getBeer, getRandomBeer, getRandomBrewery } from '../actions/searchActions';
 import { bindActionCreators} from 'redux';
 import { Dimmer, Loader } from 'semantic-ui-react';
-
+import {  withRouter, Redirect } from 'react-router-dom';
 class HomeContainer extends Component {
 
    state={
@@ -20,12 +20,20 @@ class HomeContainer extends Component {
         this.props.getRandomBeer()
         this.props.getRandomBrewery()
         
+       
+        
     }
 
-    submitHandler = (event) =>{
+    submitHandler = (event, searchTerm) =>{
         event.preventDefault();
+        this.props.getBeer(this.state.searchTerm)
+       
            
     }
+
+    
+
+   
 
     changeHandler = (event) =>{
          this.setState({
@@ -50,7 +58,9 @@ class HomeContainer extends Component {
               <Search
                    name={name} value={this.state.searchTerm} onchange={(event) =>this.changeHandler(event)} onsubmit={(event)=> this.submitHandler(event)}
               />
-              <Results results={beers}/>
+              {beers.beers.data && beers.beers.data.length >= 1 ?<Redirect to={{
+                    pathname: `/search/${this.state.searchTerm}`,  state: {beers: beers}
+              }}/> : null}
               <BeerRandom ranBeer={ranBeers.ranBeer} isLoading={ranBeers.isPending} />
               <BreweryRandom ranBrew={ranBrewery.ranBrewery} isLoading={ranBrewery.isPending}/> 
               </Container>
@@ -74,5 +84,5 @@ class HomeContainer extends Component {
            
         
     }
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeContainer));
 

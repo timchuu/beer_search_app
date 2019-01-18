@@ -1,4 +1,6 @@
-export const BEER_SEARCH = 'beer_search';
+export const BEER_SEARCH_PENDING = 'beer_search_pending';
+export const BEER_SEARCH_SUCCESS = 'beer_search_success';
+export const BEER_SEARCH_ERROR = 'beer_search_error'
 export const GET_RANDOM_BEER_SUCCESS = 'get_random_beer_success';
 export const RANDOM_BREWERY = 'random_brewery';
 export const GET_RANDOM_BEER_PENDING = 'get_random_beer_pending';
