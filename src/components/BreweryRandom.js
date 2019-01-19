@@ -37,7 +37,7 @@ class BreweryRandom extends Component {
 
         }
         const { ranBrew, isLoading } = this.props
-        console.log(this.props)
+        
         return (
             
                <React.Fragment>

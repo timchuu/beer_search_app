@@ -1,7 +1,8 @@
 import {
     GET_RANDOM_BEER_SUCCESS,
     GET_RANDOM_BEER_PENDING,
-    GET_RANDOM_BEER_ERROR
+    GET_RANDOM_BEER_ERROR,
+    GET_RANDOM_BEER_CLEAR
 } from '../actions/types';
 
 const intialState = {
@@ -20,7 +21,8 @@ export default function(state = intialState, action){
                     return {...state, isPending: false, ranBeer:action.payload}
                 case GET_RANDOM_BEER_ERROR:
                     return {...state, isPending: false, error:action.payload}
-
+                case GET_RANDOM_BEER_CLEAR: 
+                    return {...state, ranBeer:action.payload}
                     default:
                         return state
             }   

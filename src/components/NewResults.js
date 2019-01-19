@@ -1,4 +1,9 @@
-import React from 'react';
+import React from 'react'
+
+function NewResults() {
+    return (
+        <div>
+            import React from 'react';
 import { Button, Icon, Image, Item, Label, Loader, Dimmer } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 const src = 'https://via.placeholder.com/150?text=No+Image+Available';
@@ -8,11 +13,11 @@ const src = 'https://via.placeholder.com/150?text=No+Image+Available';
 const  Results = (props) => {
     
     
-      const info = props.beers.beers.data
+      const info = props.location.state.beers.beers.data
      console.log(props)   
         return (
     <Item.Group divided>
-    {info ?  info.map((item,i) =>(
+    {!props.location.state.beers.isPending && info ?  info.map((item,i) =>(
       <Item key={i}>
       <Item.Image src={item.labels ? item.labels.medium : item.images ? item.images.medium : src} centered />
       <Item.Content>
@@ -36,3 +41,8 @@ const  Results = (props) => {
 }
 
 export default Results;
+        </div>
+    )
+}
+
+export default NewResults

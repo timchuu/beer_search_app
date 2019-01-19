@@ -1,8 +1,8 @@
 import {
     BEER_SEARCH_SUCCESS,
     BEER_SEARCH_ERROR,
-    BEER_SEARCH_PENDING
-    
+    BEER_SEARCH_PENDING,
+    BEER_SEARCH_CLEAR
 } from '../actions/types';
 
 
@@ -23,7 +23,8 @@ export default function(state = intialState, action){
                     default:
                         return state;
 
-            
+            case BEER_SEARCH_CLEAR:
+                    return {...state, beers: action.payload}
 
 
 

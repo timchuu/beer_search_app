@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Single from './containers/Single';
 import SingleBrew from './containers/Single_Brew';
 import ResultsContainer from './containers/results_container';
+import {  withRouter } from 'react-router-dom';
 const App = () => {
   
     return (
@@ -19,4 +20,4 @@ const App = () => {
   
 }
 
-export default App;
+export default withRouter(App);

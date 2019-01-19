@@ -6,11 +6,10 @@ const Search = (props) => {
         return (
             <Form onSubmit={props.onsubmit}>
                 <Form.Field>
-                    <label>User Input</label>
                     <Popup
                     trigger={<Input name={props.name} onChange={props.onchange} value={props.value} action={{ type: 'submit', content: 'Go' }} placeholder='Navigate to...' />}
                     header='Beer Search'
-                    content='You may search by genre, header, year and actors'
+                    content='Search by beer and brewery'
                     on='focus'/>
                     
                 </Form.Field>

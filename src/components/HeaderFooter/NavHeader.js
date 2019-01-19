@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Dropdown, Menu, Icon } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom';
+
+
 
 export default class NavHeader extends Component {
   state = { activeItem: 'home' }
@@ -18,8 +21,7 @@ export default class NavHeader extends Component {
           name='home'
           active={activeItem === 'home'}
           onClick={this.handleItemClick}
-        />
-
+        /> 
         <Menu.Menu position='right'>
           <Dropdown item text='Language'>
             <Dropdown.Menu>

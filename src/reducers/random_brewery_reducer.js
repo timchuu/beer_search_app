@@ -1,7 +1,8 @@
 import {
     GET_RANDOM_BREWERY_SUCCESS,
     GET_RANDOM_BREWERY_PENDING,
-    GET_RANDOM_BREWERY_ERROR
+    GET_RANDOM_BREWERY_ERROR,
+    GET_RANDOM_BREWERY_CLEAR
 } from '../actions/types';
 
 
@@ -21,6 +22,8 @@ export default function(state = intialState, action){
                 return {...state, isPending:false, ranBrewery: action.payload}
             case GET_RANDOM_BREWERY_ERROR: 
                 return {...state, isPending:false, error: action.payload}
+            case GET_RANDOM_BREWERY_CLEAR: 
+                return {...state, ranBrewery: action.payload}
                     default:
                         return state
         }

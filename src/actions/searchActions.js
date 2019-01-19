@@ -8,7 +8,11 @@ import {
     GET_RANDOM_BEER_ERROR,
     GET_RANDOM_BREWERY_SUCCESS,
     GET_RANDOM_BREWERY_PENDING,
-    GET_RANDOM_BREWERY_ERROR
+    GET_RANDOM_BREWERY_ERROR,
+    GET_RANDOM_BEER_CLEAR,
+    GET_RANDOM_BREWERY_CLEAR,
+    BEER_SEARCH_CLEAR
+
 } from './types';
 
 
@@ -63,5 +67,29 @@ export function getRandomBrewery(){
 
 }
 
+
+export function getRandomBeerClear(){
+
+    return {
+        type: GET_RANDOM_BEER_CLEAR,
+        payload: null
+    }
+}
+
+export function getRandomBreweryClear(){
+
+    return {
+        type: GET_RANDOM_BREWERY_CLEAR,
+        payload: null
+    }
+}
+
+export function getBeerClear(){
+
+    return {
+        type: BEER_SEARCH_CLEAR,
+        payload: null
+    }
+}
 
 

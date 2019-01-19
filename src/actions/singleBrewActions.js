@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
     GET_SINGLE_BREW_SUCCESS,
     GET_SINGLE_BREW_PENDING,
-    GET_SINGLE_BREW_ERROR
+    GET_SINGLE_BREW_ERROR,
+    GET_SINGLE_BREW_CLEAR
 } from './types';
 
 
@@ -18,3 +19,16 @@ export function getSingleBrew(id){
     }
 
 }
+
+
+
+export function getSingleBrewClear(){
+
+
+    return {
+        type: GET_SINGLE_BREW_CLEAR,
+        payload: null
+    }
+}
+
+

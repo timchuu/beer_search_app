@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getSingleBrew } from '../actions/singleBrewActions';
+import { getSingleBrew, getSingleBrewClear } from '../actions/singleBrewActions';
 import { Container, Grid, Icon,  Header, Image, GridRow, Segment, GridColumn, Rail, Divider, List, Loader, Dimmer } from 'semantic-ui-react';
 import Layout from '../hoc/Layout';
 import BrewList from '../utils/BrewListItem';
@@ -14,6 +14,8 @@ class SingleBrew extends Component {
         this.props.loadBrewDetails(this.props.brewId)
         
     }
+
+   
     render() {
         
         const { results } = this.props;
@@ -39,7 +41,7 @@ class SingleBrew extends Component {
             <GridRow >
             <GridColumn width={6} floated='left'>
             <Segment  floated='left' inverted color='yellow' tertiary  size='large' >
-            <Image src={results.singleBrew.data ? results.singleBrew.data.images.squareMedium : null } size='medium'  verticalAlign='middle' floated='left'  rounded/>
+            <Image src={results.singleBrew.data ? results.singleBrew.data.images.squareMedium : null } size='medium'  verticalAlign='middle' floated='left'  rounded centered/>
             </Segment>
             </GridColumn>
             
@@ -63,7 +65,7 @@ class SingleBrew extends Component {
     </Container>
       
     </Layout>
-    : <Dimmer active><Loader indeterminate inline="centered" size='massive'/></Dimmer>} 
+    : <Dimmer active><Loader indeterminate inline="centered" content='Loading...' size='massive'/></Dimmer>} 
     </Container>
     
     </React.Fragment>
@@ -84,6 +86,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loadBrewDetails: (brewId) => {
             dispatch(getSingleBrew(brewId))
+        },
+        loadBrewDetailsClear: () =>{
+            dispatch(getSingleBrewClear())
         }
     }
 }

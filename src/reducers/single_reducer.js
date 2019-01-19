@@ -1,7 +1,8 @@
 import {
     GET_SINGLE_BEER_SUCCESS,
     GET_SINGLE_BEER_PENDING,
-    GET_SINGLE_BEER_ERROR
+    GET_SINGLE_BEER_ERROR,
+    GET_SINGLE_BEER_CLEAR
 } from '../actions/types';
 
 
@@ -22,6 +23,8 @@ export default function(state = intialState, action){
                         return {...state, isPending:true} 
                case GET_SINGLE_BEER_ERROR : 
                         return {...state, isPending:false, error: action.payload}
+               case GET_SINGLE_BEER_CLEAR:
+                        return {...state, singleBeer: action.payload}
                     default: 
                         return state
             }
