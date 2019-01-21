@@ -28,7 +28,7 @@ const  Results = (props) => {
       </Item.Content>
     </Item>
       
-    )): <Dimmer active><Loader indeterminate inline="centered" content='Loading...' size='massive'/></Dimmer>}
+    )): null}
     
   </Item.Group>
         );

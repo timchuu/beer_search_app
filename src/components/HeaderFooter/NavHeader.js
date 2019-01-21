@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Dropdown, Menu, Icon } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -13,11 +13,13 @@ export default class NavHeader extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu size='large'>
+      <Menu size='large' fluid>
         <Menu.Item>
              <Icon name='beer'/>
         </Menu.Item>
         <Menu.Item
+          as={Link}
+          to='/'
           name='home'
           active={activeItem === 'home'}
           onClick={this.handleItemClick}

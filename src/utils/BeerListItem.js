@@ -6,7 +6,7 @@ const BeerListItem = (props) => {
     const arr = [];
   const singleBeerItem = props.results.singleBeer.data;
   arr[0] = singleBeerItem;
-  console.log(arr[0]);
+  
   return (
     <div>
       {arr[0]

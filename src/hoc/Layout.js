@@ -10,7 +10,7 @@ class Layout extends Component {
            
                 {this.props.children}
             
-            <NavFooter/>
+            
             </React.Fragment>
         );
     }

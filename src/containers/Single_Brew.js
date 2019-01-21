@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSingleBrew, getSingleBrewClear } from '../actions/singleBrewActions';
-import { Container, Grid, Icon,  Header, Image, GridRow, Segment, GridColumn, Rail, Divider, List, Loader, Dimmer } from 'semantic-ui-react';
+import { Container, Grid, Icon,  Header, Image, GridRow, Segment, GridColumn, Button, Divider, List, Loader, Dimmer } from 'semantic-ui-react';
 import Layout from '../hoc/Layout';
 import BrewList from '../utils/BrewListItem';
-
+import BrewMapContainer from './brew_map_container'
 
 class SingleBrew extends Component {
 
@@ -19,7 +19,7 @@ class SingleBrew extends Component {
     render() {
         
         const { results } = this.props;
-        console.log(this.props.results)
+        console.log(this.props)
         return (
             
             <React.Fragment>
@@ -34,6 +34,7 @@ class SingleBrew extends Component {
             <Divider  section clearing hidden/>
             </div>
             <Divider  section  />
+            <Button labelPosition='left' icon='left chevron' content='Back' onClick={this.props.history.goBack}/>
             </Container>
             
             <Container style={{ marginTop: '2em' }}>
@@ -50,6 +51,13 @@ class SingleBrew extends Component {
             <BrewList {...this.props}/>
                    
     </GridColumn>
+    </GridRow>
+    <GridRow>
+        <p>DESCRITPIION OTHER DATA</p>
+    </GridRow>
+    <GridRow>
+
+        <BrewMapContainer mapData={this.props.results} />
     </GridRow>
             
             
