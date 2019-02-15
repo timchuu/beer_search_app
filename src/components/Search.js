@@ -7,7 +7,7 @@ const Search = (props) => {
             <Form onSubmit={props.onsubmit}>
                 <Form.Field>
                     <Popup
-                    trigger={<Input name={props.name} onChange={props.onchange} value={props.value} action={{ type: 'submit', content: 'Go' }} placeholder='Navigate to...' />}
+                    trigger={<Input name={props.name} onChange={props.onchange} value={props.value} action={{ type: 'submit', content: 'Go' }} placeholder='Search...' />}
                     header='Beer Search'
                     content='Search by beer and brewery'
                     on='focus'/>

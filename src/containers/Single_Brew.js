@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSingleBrew, getSingleBrewClear } from '../actions/singleBrewActions';
-import { Container, Grid, Icon,  Header, Image, GridRow, Segment, GridColumn, Button, Divider, List, Loader, Dimmer } from 'semantic-ui-react';
+import { Container, Grid, Icon,  Header, Image, GridRow, Segment, GridColumn, Button, Divider, List, Loader, Dimmer, Label } from 'semantic-ui-react';
 import Layout from '../hoc/Layout';
 import BrewList from '../utils/BrewListItem';
 import BrewMapContainer from './brew_map_container'
@@ -19,7 +19,7 @@ class SingleBrew extends Component {
     render() {
         
         const { results } = this.props;
-        console.log(this.props)
+       console.log(results)
         return (
             
             <React.Fragment>
@@ -34,15 +34,15 @@ class SingleBrew extends Component {
             <Divider  section clearing hidden/>
             </div>
             <Divider  section  />
-            <Button labelPosition='left' icon='left chevron' content='Back' onClick={this.props.history.goBack}/>
+            <Button labelPosition='left' icon='left chevron' content='Back' style={{marginLeft:'10px'}} onClick={this.props.history.goBack}/>
             </Container>
             
             <Container style={{ marginTop: '2em' }}>
-            <Grid columns={2} celled='internally'>
+            <Grid columns={2} celled='internally' stackable>
             <GridRow >
             <GridColumn width={6} floated='left'>
             <Segment  floated='left' inverted color='yellow' tertiary  size='large' >
-            <Image src={results.singleBrew.data ? results.singleBrew.data.images.squareMedium : null } size='medium'  verticalAlign='middle' floated='left'  rounded centered/>
+            <Image src={results.singleBrew.data ? results.singleBrew.data.images.squareMedium : null } size='small'  verticalAlign='middle' floated='left'  rounded centered/>
             </Segment>
             </GridColumn>
             
@@ -52,12 +52,18 @@ class SingleBrew extends Component {
                    
     </GridColumn>
     </GridRow>
-    <GridRow>
-        <p>DESCRITPIION OTHER DATA</p>
+    <GridRow verticalAlign='middle' >
+    <Header as='h2'  style={{marginTop:'30px'}} >
+      Description  <Label>Established: {results.singleBrew.data && results.singleBrew.data.established ? results.singleBrew.data.established : 'year not available'}</Label>
+    </Header>
+    <Segment basic style={{backgroundColor:'#eee', marginBottom: '30px'}}>
+      {results.singleBrew.data && results.singleBrew.data.description ? results.singleBrew.data.description : 'no description available'}
+    </Segment>
     </GridRow>
     <GridRow>
-
+               
         <BrewMapContainer mapData={this.props.results} />
+       
     </GridRow>
             
             

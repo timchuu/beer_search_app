@@ -3,7 +3,7 @@ import { List, Icon} from 'semantic-ui-react';
 
 
 const BrewInfo = (props) => {
-    console.log(props.brewInfo)
+    
  
    
     return (

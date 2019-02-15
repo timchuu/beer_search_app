@@ -46,13 +46,14 @@ changeHandler = (event) =>{
   render() {
     const name='searchTerm';
     
-   console.log(this.props)
+  
     return (
       <div>
        {!this.props.beers.isPending ?
       <Layout>
         <Container>
         <Search name={name} value={this.state.searchTerm}  onchange={(event) =>this.changeHandler(event)} onsubmit={(event)=> this.submitHandler(event)} />
+        
         <Results {...this.props} /> 
         </Container>
         </Layout>

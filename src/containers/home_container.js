@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Search from '../components/Search';
-import Layout from '../hoc/Layout';
 import Results from '../components/Results';
 import BeerRandom from '../components/BeerRandom';
 import BreweryRandom from '../components/BreweryRandom';
@@ -63,22 +62,25 @@ class HomeContainer extends Component {
         const name = 'searchTerm'
         
         return (
+
             <React.Fragment>
+            <div  style={{background: `url('/images/beerhome.jpg')  no-repeat  `, border: 'black 1px solid', height: '100vh', width:'100vw', backgroundSize: 'cover' , backgroundPosition: 'center'}}>
             {!this.props.ranBeers.isPending && !this.props.ranBrewery.isPending  ?
-            <Layout>
-            <Container fluid>
-            <div  style={{background: `url('/images/beerhome.jpg')  no-repeat  `, border: 'black 1px solid', height: '350px', width:'100%', backgroundSize: 'cover' , backgroundPosition: 'center'}}>
+            <>
+           
+            
             <Divider  section clearing hidden/>
-            </div>
-            </Container>
+            
+           
             <Container>
               <Search
                    name={name} value={this.state.searchTerm} onchange={(event) =>this.changeHandler(event)} onsubmit={(event)=> this.submitHandler(event)}
               />
               <BeerRandom ranBeer={ranBeers.ranBeer} isLoading={ranBeers.isPending} />
-              <BreweryRandom ranBrew={ranBrewery.ranBrewery} isLoading={ranBrewery.isPending}/> 
-              </Container>
-            </Layout> : <Dimmer active><Loader indeterminate inline="centered" content='Loading...' size='massive'/></Dimmer>}
+              <BreweryRandom ranBrew={ranBrewery.ranBrewery} isLoading={ranBrewery.isPending}/>
+             
+              </Container></> : <Dimmer active><Loader indeterminate inline="centered" content='Loading...' size='massive'/></Dimmer>}
+              </div> 
             </React.Fragment>
         );
     }

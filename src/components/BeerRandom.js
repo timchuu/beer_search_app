@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Header, Container } from "semantic-ui-react";
-import { Card, Image, Segment } from "semantic-ui-react";
+import { Header, Container, Segment, GridColumn, Card, Image, GridRow, Grid  }  from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import InlineLoader from "../utils/InlineLoader";
@@ -40,16 +39,17 @@ class BeerRandom extends Component {
 
     return (
       <React.Fragment>
-        <Header as="h3" dividing>
+        <Header as='h2' dividing style={{color:'white'}}>
           Discover Beers
         </Header>
 
         <Container>
-          <Slider {...settings}>
+        <Grid columns={3} padded='horizontally'>
             {ranBeer.data
               ? ranBeer.data.map((item, i) => (
+                <GridColumn key={item.id}>
                   <Link to={`/beer/${item.id}`} key={item.id}>
-                    <Card  className=' hvr-grow' color="yellow" centered raised>
+                    <Card   color="yellow" centered raised>
                       <Image centered src={item.labels.icon} />
                       <Card.Content>
                         <Card.Header>
@@ -68,15 +68,17 @@ class BeerRandom extends Component {
                       </Card.Content>
                     </Card>
                   </Link>
+                  </GridColumn>
                 ))
               : null}
-          </Slider>
+         
 
           {isLoading ? (
             <Segment textAlign="center">
               <InlineLoader>Preparing Files</InlineLoader>
             </Segment>
           ) : null}
+          </Grid>
         </Container>
       </React.Fragment>
     );

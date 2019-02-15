@@ -29,21 +29,41 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
         
         const style = {
             width: '100vw',
-            height: '500px'
+            height: '500px',
+            
+          
           }
         const { locations } = this.props.mapData.singleBrew.data
-      
-      
-        console.log(this.props)
+        
+        
+        let newPoints = locations.map(({latitude, longitude})=>{
+          return {latitude, longitude}
+        });
+         
+          
+        let newData = newPoints.map(a =>({lat : a.latitude, lng: a.longitude}))
+
+       
+        
+        
+        let bounds = new this.props.google.maps.LatLngBounds();
+          for(var i = 0; i < newData.length; i++){
+            bounds.extend(newData[i]);
+            
+          }
+         
+       
+            
+          
         return (
             <div style={style}>
-            <div>
-            {locations[0].longitude}
-        </div>
-        <Map google={this.props.google}  zoom={14}  initialCenter={{
+            
+        <Map google={this.props.google}  zoom={8}  initialCenter={{
             lat:locations[0].latitude ,
             lng: locations[0].longitude
-          }} onClick={this.onMapClicked}>
+          }}
+            bounds={bounds}
+           onClick={this.onMapClicked}>
           {locations.map((marker,i) =>(
                 <Marker
                 position={{ lat: marker.latitude, lng: marker.longitude }}
