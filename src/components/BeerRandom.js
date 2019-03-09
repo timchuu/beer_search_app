@@ -39,15 +39,16 @@ class BeerRandom extends Component {
 
     return (
       <React.Fragment>
-        <Header as='h2' dividing style={{color:'white'}}>
-          Discover Beers
-        </Header>
+        
 
-        <Container>
-        <Grid columns={3} padded='horizontally'>
+        <Container style={{marginTop:'30px'}}>
+        <Header as='h2' dividing style={{color:'white'}}>
+          Featured Beers
+        </Header>
+        <Grid columns={3} padded='horizontally' stackable >
             {ranBeer.data
               ? ranBeer.data.map((item, i) => (
-                <GridColumn key={item.id}>
+                <GridColumn key={item.id} tablet={5} computer={5} mobile={16}>
                   <Link to={`/beer/${item.id}`} key={item.id}>
                     <Card   color="yellow" centered raised>
                       <Image centered src={item.labels.icon} />

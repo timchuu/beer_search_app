@@ -14,12 +14,13 @@ class BreweryRandom extends Component {
             
                <React.Fragment>
                  
-                <Header as='h2' dividing style={{color:'white'}}>
-                Discover Breweries
-                    </Header>
+                
                    
-                    <Container>
-                    <Grid columns={3} padded='horizontally'>
+                    <Container style={{marginTop:'30px'}}>
+                    <Header as='h2' dividing style={{color:'white'}}>
+                    Featured Breweries
+                    </Header>
+                    <Grid columns={3} padded='horizontally' stackable>
                
                 
                     
@@ -30,7 +31,7 @@ class BreweryRandom extends Component {
                     ranBrew.data ?
                    
                         ranBrew.data.map((item, i) =>(
-                            <GridColumn key={item.id}>
+                            <GridColumn key={item.id} computer={5}  tablet={5} mobile={16}>
                             <Link to={`/brewery/${item.id}`} >
                             <Card  color='yellow' centered  raised>
                                 <Image centered src={item.images.medium} />

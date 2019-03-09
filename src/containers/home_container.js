@@ -4,7 +4,7 @@ import Search from '../components/Search';
 import Results from '../components/Results';
 import BeerRandom from '../components/BeerRandom';
 import BreweryRandom from '../components/BreweryRandom';
-import { Container } from 'semantic-ui-react';
+import { Container, Header, Grid, GridRow } from 'semantic-ui-react';
 import { getBeer, getRandomBeer, getRandomBrewery, getRandomBeerClear, getRandomBreweryClear } from '../actions/searchActions';
 import { bindActionCreators} from 'redux';
 import { Dimmer, Loader, Divider } from 'semantic-ui-react';
@@ -68,18 +68,27 @@ class HomeContainer extends Component {
             {!this.props.ranBeers.isPending && !this.props.ranBrewery.isPending  ?
             <>
            
-            
+           
             <Divider  section clearing hidden/>
             
-           
+            <Header as='h1' textAlign='center' style={{color:'white', fontFamily: 'Fjalla One', fontSize:'3rem'}} >Discover Beers and Breweries</Header>
             <Container>
+            
               <Search
-                   name={name} value={this.state.searchTerm} onchange={(event) =>this.changeHandler(event)} onsubmit={(event)=> this.submitHandler(event)}
+                   name={name} value={this.state.searchTerm} onchange={(event) =>this.changeHandler(event)} onsubmit={(event)=> this.submitHandler(event)} 
               />
+               <Grid stackable >
+              <GridRow  >
               <BeerRandom ranBeer={ranBeers.ranBeer} isLoading={ranBeers.isPending} />
-              <BreweryRandom ranBrew={ranBrewery.ranBrewery} isLoading={ranBrewery.isPending}/>
+              </GridRow>
+              
              
+              <GridRow >
+              <BreweryRandom ranBrew={ranBrewery.ranBrewery} isLoading={ranBrewery.isPending}/>
+              </GridRow>
+              </Grid>
               </Container></> : <Dimmer active><Loader indeterminate inline="centered" content='Loading...' size='massive'/></Dimmer>}
+              
               </div> 
             </React.Fragment>
         );

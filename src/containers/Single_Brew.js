@@ -17,8 +17,14 @@ class SingleBrew extends Component {
 
    
     render() {
-        
         const { results } = this.props;
+
+        const styles = {
+            backgroundColor: results.singleBrew.data && results.singleBrew.data.description? '#eee' : '',
+            marginBottom: '14px'
+        }
+        
+        
        console.log(results)
         return (
             
@@ -56,7 +62,7 @@ class SingleBrew extends Component {
     <Header as='h2'  style={{marginTop:'30px'}} >
       Description  <Label>Established: {results.singleBrew.data && results.singleBrew.data.established ? results.singleBrew.data.established : 'year not available'}</Label>
     </Header>
-    <Segment basic style={{backgroundColor:'#eee', marginBottom: '30px'}}>
+    <Segment basic style={styles}>
       {results.singleBrew.data && results.singleBrew.data.description ? results.singleBrew.data.description : 'no description available'}
     </Segment>
     </GridRow>

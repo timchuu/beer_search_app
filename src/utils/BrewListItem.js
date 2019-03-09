@@ -8,7 +8,7 @@ const BrewListItem = props => {
   const arr = [];
   const singleBrewItem = props.results.singleBrew.data;
   arr[0] = singleBrewItem;
-  console.log(arr)
+  
 
   return (
     <div>

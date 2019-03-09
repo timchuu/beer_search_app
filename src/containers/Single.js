@@ -2,25 +2,85 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSingleBeer, getSingleBeerClear } from '../actions/singleActions';
 import Layout from '../hoc/Layout';
-import { Container, Grid, Icon,  Header, Image, GridRow, Segment, GridColumn, Divider, Loader, Dimmer, Button } from 'semantic-ui-react';
+import { Container, Grid, Icon,  Header, Image, GridRow, Segment, GridColumn, Divider, Loader, Dimmer, Button, Label } from 'semantic-ui-react';
 import BeerList from '../utils/BeerListItem';
 const src = 'https://via.placeholder.com/150?text=No+Image+Available';
 
 
+
 class Single extends Component {
+
+    
 
     componentDidMount(){
         this.props.loadBeerDetails(this.props.beerId);
         
     }
 
-  
+    showRightDescription = (results) =>{
+        const styles = {
+            backgroundColor: results.singleBeer.data && results.singleBeer.data.description? '#eee' : '',
+            marginBottom: '14px'
+        }
+        if(results.singleBeer.data && results.singleBeer.data.description && results.singleBeer.data.style && results.singleBeer.data.style.description ){
+            return (
+                <>
+        <GridRow verticalAlign='middle' >
+            <Header as='h2'  style={{marginTop:'30px'}} >
+      Description  
+    </Header>
+    <Segment basic style={styles}>
+      {results.singleBeer.data && results.singleBeer.data.description ? results.singleBeer.data.description : 'no description available'}
+    </Segment>
+    </GridRow>
+            
+    <GridRow verticalAlign='middle' >
+    <Header as='h2'  style={{marginTop:'30px'}} >
+     Style Description  
+    </Header>
+    <Segment basic style={styles}>
+      {results.singleBeer.data && results.singleBeer.data.style.description ? results.singleBeer.data.style.description : 'no description available'}
+    </Segment>
+    </GridRow>
+    </>
+            )
+        } else if(results.singleBeer.data && results.singleBeer.data.description){
+            return(
+                <>
+                <GridRow verticalAlign='middle' >
+            <Header as='h2'  style={{marginTop:'30px'}} >
+      Description  
+    </Header>
+    <Segment basic style={styles}>
+      {results.singleBeer.data && results.singleBeer.data.description ? results.singleBeer.data.description : 'no description available'}
+    </Segment>
+    </GridRow>
+    </>
+    )
+            
+        } else if(results.singleBeer.data && results.singleBeer.data.style && results.singleBeer.data.style.description){
+            return(
+                <GridRow verticalAlign='middle' >
+                <Header as='h2'  style={{marginTop:'30px'}} >
+                 Style Description  
+                </Header>
+                <Segment basic style={styles}>
+                  {results.singleBeer.data && results.singleBeer.data.style.description ? results.singleBeer.data.style.description : 'no description available'}
+                </Segment>
+                </GridRow>  
+            )
+        } 
+    }
 
 
     render() {
-       
-        console.log(this.props)
+
+
         const { results } = this.props
+        
+       
+       
+        
         return (
              
             <React.Fragment>
@@ -35,7 +95,7 @@ class Single extends Component {
             <Divider  section clearing hidden/>
             </div>
             <Divider  section  />
-            <Button labelPosition='left' icon='left chevron' content='Back' onClick={this.props.history.goBack}/>
+            <Button labelPosition='left' icon='left chevron' content='Back' style={{marginLeft:'10px'}} onClick={this.props.history.goBack}/>
             </Container>
             
             <Container style={{ marginTop: '2em' }}>
@@ -43,7 +103,7 @@ class Single extends Component {
             <GridRow >
             <GridColumn width={6} floated='left'>
             <Segment  floated='left' inverted color='yellow' tertiary  size='large' >
-            <Image src={results.singleBeer.data &&  results.singleBeer.data.labels ? results.singleBeer.data.labels.medium   : src } size='medium'  verticalAlign='middle' floated='left'  rounded centered/>
+            <Image src={results.singleBeer.data &&  results.singleBeer.data.labels ? results.singleBeer.data.labels.medium   : src } size='small'  verticalAlign='middle' floated='left'  rounded centered/>
             </Segment>
             </GridColumn>
             
@@ -53,6 +113,8 @@ class Single extends Component {
                    
     </GridColumn>
     </GridRow>
+    
+    {this.showRightDescription(results)}
             
             
            
